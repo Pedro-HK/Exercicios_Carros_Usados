@@ -4,3 +4,12 @@ Projeto de construção de uma pagina de carros usados, obtendo os dados por mei
 
 ##Telas Desktop e para Laptop
 
+![Imagem1](https://github.com/Pedro-HK/Exercicios_Carros_Usados/blob/main/Telas/Desktops_Laptops_1.png)
+
+![IMagem2](https://github.com/Pedro-HK/Exercicios_Carros_Usados/blob/main/Telas/Desktops_Laptops_2.png)
+
+##Telas Mobile
+
+![Imagem1](https://github.com/Pedro-HK/Exercicios_Carros_Usados/blob/main/Telas/Mobile_1.png)
+
+![IMagem2](https://github.com/Pedro-HK/Exercicios_Carros_Usados/blob/main/Telas/Mobile_2.png)
