@@ -7,7 +7,7 @@
     const $anoMinimo = document.getElementById('select_ano_minimo')
     const $anoMaximo = document.getElementById('select_ano_maximo')
     const $tipoCombustivel = document.getElementById('select_combustivel')
-    const $carrosUsados = document.getElementById('chk_carros')
+    const $carrosNaoUsados = document.getElementById('chk_carros')
     const $precoMinimo = document.getElementById('preco_minimo')
     const $precoMaximo = document.getElementById('preco_maximo')
     const $kmMinimo = document.getElementById('km_minimo')
@@ -256,12 +256,11 @@
             let anosAtualizados = []
             let kmAtualizado = []
             let precosAtualizados = []
-            let carros = []
 
             //funções para ordenar em ordem crescente ou descrescente de acordo com a categoria selecionada
             function ordenaMarca(){
                 if($crescente.checked){
-                    carros.sort((a, b) => {
+                    carrosFiltrados.sort((a, b) => {
                         if(a.marca < b.marca){
                             return -1
                         } else{
@@ -271,7 +270,7 @@
                 }
 
                 if($decrescente.checked){
-                    carros.sort((a, b) => {
+                    carrosFiltrados.sort((a, b) => {
                         if(a.marca > b.marca){
                             return -1
                         } else{
@@ -283,27 +282,27 @@
 
             function ordenaPreco(){
                 if($crescente.checked){
-                    carros.sort((a, b) => a.preco - b.preco)     
+                    carrosFiltrados.sort((a, b) => a.preco - b.preco)     
                 }
                 
                 if($decrescente.checked){
-                    carros.sort((a, b) => b.preco - a.preco)
+                    carrosFiltrados.sort((a, b) => b.preco - a.preco)
                 }
             }
 
             function ordenaKm(){
                 if($crescente.checked){
-                    carros.sort((a, b) => a.km - b.km)      
+                    carrosFiltrados.sort((a, b) => a.km - b.km)      
                 }
                 
                 if($decrescente.checked){
-                    carros.sort((a, b) => b.km - a.km)
+                    carrosFiltrados.sort((a, b) => b.km - a.km)
                 }
             }
 
             function ordenaModelo(){
                 if($crescente.checked){
-                    carros.sort((a, b) => {
+                    carrosFiltrados.sort((a, b) => {
                         if(a.modelo < b.modelo){
                             return -1
                         } else{
@@ -313,7 +312,7 @@
                 }
                 
                 if($decrescente.checked){
-                    carros.sort((a, b) => {
+                    carrosFiltrados.sort((a, b) => {
                         if(a.modelo > b.modelo){
                             return -1
                         } else{
@@ -325,66 +324,54 @@
 
             function ordenaAno(){
                 if($crescente.checked){
-                    carros.sort((a, b) => a.ano - b.ano)      
+                    carrosFiltrados.sort((a, b) => a.ano - b.ano)      
                 }
                 
                 if($decrescente.checked){
-                    carros.sort((a, b) => b.ano - a.ano)
+                    carrosFiltrados.sort((a, b) => b.ano - a.ano)
                 }
             }
 
             // método para percorrer todos os dados e de acordo com os "if" filtra e coloca os dados restantes na array "carros", assim como a propriedade de cada dado
-            dados.map(car => {
-                
-                let n = 0
-                               
-                if(($carrosUsados.checked && car.usado === false) || (!$carrosUsados.checked && (car.usado === true || car.usado === false))){
-                    n++
-                }
+            const carrosFiltrados = dados.filter(car => {
 
-                if(getMarca() === car.marca || getMarca() === undefined){
-                    n++
-                }
-
-                if((getAnoMinimo() <= car.ano || getAnoMinimo() === undefined) && (getAnoMaximo() >= car.ano || getAnoMaximo() === undefined)){
-                    n++
-                }
-
-                if(getCombustivel() === car.combustivel || getCombustivel() === undefined){
-                    n++
-                }
-
-                if(($precoMinimo.value <= car.preco || $precoMinimo.value === '') && ($precoMaximo.value >= car.preco || $precoMaximo.value === '')){
-                    n++
-                }
-
-                if(($kmMinimo.value <= car.km || $kmMinimo.value === '') && ($kmMaximo.value >= car.km || $kmMaximo.value === '')){
-                    n++
-                }
-                
-                if(n === 6){
-                    carros.push(car)
-                    anosAtualizados.push(car.ano)
-                    kmAtualizado.push(car.km)
-                    precosAtualizados.push(car.preco)
-
-                    // de acordo com a categoria selecionada, é acionada a função desta categoria
-                    if(getCategoria() === 'marca'){
+                const filtroCarrosNaoUsados = $carrosNaoUsados.checked && !car.usado;
+                const filtroCarrosUsados = !$carrosNaoUsados.checked && (car.usado === true || car.usado === false);
+                const filtroMarca = getMarca() === car.marca || !getMarca();
+                const filtroAno = (getAnoMinimo() <= car.ano || !getAnoMinimo()) && (getAnoMaximo() >= car.ano || !getAnoMaximo());
+                const filtroCombustivel = getCombustivel() === car.combustivel || !getCombustivel();
+                const filtroPreco = ($precoMinimo.value <= car.preco || $precoMinimo.value === '') && ($precoMaximo.value >= car.preco || $precoMaximo.value === '');
+                const filtroKm = ($kmMinimo.value <= car.km || $kmMinimo.value === '') && ($kmMaximo.value >= car.km || $kmMaximo.value === '');
+            
+                return (filtroCarrosNaoUsados || filtroCarrosUsados) && filtroMarca && filtroAno && filtroCombustivel && filtroPreco && filtroKm;
+            });
+            
+            carrosFiltrados.forEach(car => {
+                anosAtualizados.push(car.ano);
+                kmAtualizado.push(car.km);
+                precosAtualizados.push(car.preco);
+            
+                switch(getCategoria()){
+                    case('marca'):
                         ordenaMarca()
-                    } else if(getCategoria() === 'modelo'){
+                        break
+                    case('modelo'):
                         ordenaModelo()
-                    } else if(getCategoria() === 'quilometragem'){
+                        break
+                    case('quilometragem'):
                         ordenaKm()
-                    } else if(getCategoria() === 'preço'){
+                        break
+                    case('preço'):
                         ordenaPreco()
-                    } else if(getCategoria() === 'ano'){
+                        break
+                    case('ano'):
                         ordenaAno()
-                    }
+                        break
                 }
-            })
-
+            });
+            
             // imprimir os carros filtrados na tela
-            mostraListaDeCarros(carros)
+            mostraListaDeCarros(carrosFiltrados)
 
             // evento para o click do botão de média de preços após filtrados 
             $btnMediaPrecos.addEventListener('click', () => {
@@ -571,6 +558,4 @@
             mostraListaDeCarros(filteredCars)
         })
     })
-
-    
 })()
