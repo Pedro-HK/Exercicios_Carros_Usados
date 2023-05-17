@@ -332,7 +332,7 @@
                 }
             }
 
-            // método para percorrer todos os dados e de acordo com os "if" filtra e coloca os dados restantes na array "carros", assim como a propriedade de cada dado
+            // método para filtrar todos os dados de acordo com os valores que retornam verdadeiro
             const carrosFiltrados = dados.filter(car => {
 
                 const filtroCarrosNaoUsados = $carrosNaoUsados.checked && !car.usado;

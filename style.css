@@ -243,7 +243,7 @@ select{
 /* Carro individual */
 
 .card_carro{
-    flex-basis: 190px;
+    flex: 1 1 190px;
     display: grid;
     grid-template-columns: 1fr 2fr;
     background-color: white;
