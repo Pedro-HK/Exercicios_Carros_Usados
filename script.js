@@ -110,28 +110,25 @@
     // insere no HTML
     filtraAno.map((el) => {
       $anoMinimo.innerHTML += `<option>${el}</option>`;
+      $anoMaximo.innerHTML += `<option>${el}</option>`;
     });
 
-    $anoMinimo.addEventListener('change', (e) => {
-      $anoMaximo.innerHTML = '<option value="-1">-- Selecione --</option>'
-      const filtraAnoMaximo = filtraAno.reduce((item, currentItem, index) => {
-        console.log(item)
-        console.log(currentItem)
-        console.log(index)
-        console.log($anoMinimo[index + 1].selected)
-        console.log(filtraAno[index])
-        if(($anoMinimo[index].selected) <= filtraAno[index]){
-          item.push(currentItem)
+    // insere apenas os anos maiores que o ano minimo no "select"
+    $anoMinimo.addEventListener("change", (e) => {
+      const filtraAnoMaximo = filtraAno.reduce((item, currentItem) => {
+        if ($anoMinimo.value <= currentItem) {
+          item.push(currentItem);
         }
-        return item
-      }, [])
-      
-      filtraAno.map(el => {
-        $anoMaximo.innerHTML += `<option>${el}</option>`;
-      })
-    })
-  }
+        return item;
+      }, []);
 
+      $anoMaximo.innerHTML = '<option value="-1">-- Selecione --</option>';
+
+      filtraAnoMaximo.map((el) => {
+        $anoMaximo.innerHTML += `<option>${el}</option>`;
+      });
+    });
+  }
 
   // função para organizar uma array com o combustível de cada dado e inserir nas opções no HTML
   function putCombustivel(dados) {
