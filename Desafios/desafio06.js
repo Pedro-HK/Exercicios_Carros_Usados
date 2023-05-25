@@ -1,35 +1,18 @@
-function prefixo(){
-    const strings = ["Sabado", "Segunda", "Domingo", "Dia", "Sexta"];
+function prefixo(strings){
+    const first = strings[0]
+    let prefixo = ''
 
-    let prefixCounts = strings.reduce((previous, current) =>{
-        let prefix = current[0];
-
-        if (previous[prefix]) {
-            previous[prefix]++;
-        } else {
-            previous[prefix] = 1;
-        }
-
-        return previous;
-    }, {});
-
-    let mostCommonPrefix = "";
-    let mostCommonCount = 0;
-
-    for (let prefix in prefixCounts) {
-        if (prefixCounts[prefix] > mostCommonCount) {
-            mostCommonPrefix = prefix;
-            mostCommonCount = prefixCounts[prefix];
+    for(let i = 0; i < first.length; i++){
+        const letter = first[i]
+        
+        if(strings.every(str => str[i] === letter)){
+            prefixo += letter
+        } else{
+            break
         }
     }
 
-    if (mostCommonCount === 0) {
-        console.log("");
-    } else {
-        console.log(mostCommonPrefix);
-    }
-
-    return mostCommonPrefix;
+    return prefixo
 }
 
-prefixo()
+console.log(prefixo(["segunda", "segurar", "segredo"]))

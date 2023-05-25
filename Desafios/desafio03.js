@@ -2,9 +2,9 @@ function recursivoFibonacci(parametro) {
 	if (parametro <= 1) {
 		return parametro;
 	}
-	else {
-		return recursiveFibonacci(parametro-1) + recursiveFibonacci(parametro-2);
-	}
+	
+	return recursivoFibonacci(parametro-1) + recursivoFibonacci(parametro-2);
+	
 }
 
 function iterativoFibonacci(parametro) {

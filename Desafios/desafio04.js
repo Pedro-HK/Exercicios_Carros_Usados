@@ -5,5 +5,3 @@ function minNumber(arr) {
         }
     }
 }
-
-console.log(minNumber([1, 2, 3, 4, 5]))

@@ -1,181 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Carros usados</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="container">
-        <header>
-            <img src="/Imagens/Logo Carros.png" alt="Top Cars">
-            <div class="show_menu">
-                <nav>
-                    <ul>
-                        <li><a href="#">Contato</a></li>
-                        <li><a href="#">Compras</a></li>
-                        <li><a href="#">Promoções</a></li>
-                        <li><a href="#">Perfil</a></li>
-                    </ul>
-                </nav>
-                <button class="menu_icone"><img src="Imagens/menu.svg" alt="Abrir menu" class="icone_menu"></button>
+      <header>
+        <img src="/Imagens/Logo Carros.png" alt="Top Cars" />
+        <div class="show_menu">
+          <nav>
+            <ul>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">Compras</a></li>
+              <li><a href="#">Promoções</a></li>
+              <li><a href="#">Perfil</a></li>
+            </ul>
+          </nav>
+          <button class="menu_icone">
+            <img src="Imagens/menu.svg" alt="Abrir menu" class="icone_menu" />
+          </button>
+        </div>
+        <div class="responsive_menu">
+          <nav>
+            <ul>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">Compras</a></li>
+              <li><a href="#">Promoções</a></li>
+              <li><a href="#">Perfil</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main>
+        <nav class="nav_pesquisar">
+          <div class="div_infos">
+            <span class="carros_filtrados"
+              >Carros filtrados: <output></output
+            ></span>
+
+            <span class="carros_selecionados"
+              >Carros selecionados: <output></output
+            ></span>
+
+            <span class="valor_carros_selecionados"
+              >Valor carros selecionados: <output></output
+            ></span>
+
+            <span class="mediana_anos_carros_selecionados"
+              >Mediana anos: <output></output
+            ></span>
+
+            <span class="desvio_padrao_km_carros_selecionados"
+              >Desvio padrão: <output></output
+            ></span>
+
+            <span class="media_precos">Media de preços: <output></output></span>
+
+            <span class="ano_popular">Ano popular: <output></output></span>
+          </div>
+
+          <div class="search_marca_modelo">
+            <label for="marca_modelo" class="search">
+              <b>Busque o carro que deseja</b>
+            </label>
+            <input
+              type="text"
+              id="marca_modelo"
+              placeholder="Pesquise a marca ou o modelo que busca"
+            />
+          </div>
+
+          <nav class="nav_filtrar">
+            <form id="filtrar">
+              <div class="div_select_marca">
+                <label for="select_marca">
+                  <b>Selecione a marca</b>
+                </label>
+                <select id="select_marca">
+                  <option value="-1">-- Selecione --</option>
+                </select>
+              </div>
+
+              <div class="div_select_combustivel">
+                <label for="select_combustivel">
+                  <b>Selecione o tipo de combustível</b>
+                </label>
+                <select id="select_combustivel">
+                  <option value="-1">-- Selecione --</option>
+                </select>
+              </div>
+
+              <div class="div_select_ano_minimo">
+                <label for="select_ano_minimo">
+                  <b>Selecione o ano mínimo</b>
+                </label>
+                <select id="select_ano_minimo">
+                  <option value="-1">-- Selecione --</option>
+                </select>
+              </div>
+
+              <div class="div_select_ano_maximo">
+                <label for="select_ano_maximo">
+                  <b>Selecione o ano máximo</b>
+                </label>
+                <select id="select_ano_maximo">
+                  <option value="-1">-- Selecione --</option>
+                </select>
+              </div>
+
+              <div class="div_preco_minimo">
+                <label for="preco_minimo">
+                  <b>Preço mínimo</b>
+                </label>
+                <input type="number" id="preco_minimo" />
+              </div>
+
+              <div class="div_preco_maximo">
+                <label for="preco_maximo">
+                  <b>Preço máximo</b>
+                </label>
+                <input type="number" id="preco_maximo" />
+              </div>
+
+              <div class="div_km_minimo">
+                <label for="km_minimo">
+                  <b>Quilometragem mínima</b>
+                </label>
+                <input type="number" id="km_minimo" />
+              </div>
+
+              <div class="div_km_maximo">
+                <label for="km_maximo">
+                  <b>Quilometragem máxima</b>
+                </label>
+                <input type="number" id="km_maximo" />
+              </div>
+
+              <div class="checkbox_carros">
+                <input type="checkbox" id="chk_carros" />
+                <label for="chk_carros">Carros não usados</label>
+              </div>
+
+              <div id="categoria">
+                <label for="select_categoria" id="label_select_categoria">
+                  <b>Filtrar por categoria</b>
+                </label>
+                <select id="select_categoria">
+                  <option value="-1">-- Selecione --</option>
+                  <option value="0">ano</option>
+                  <option value="1">marca</option>
+                  <option value="2">modelo</option>
+                  <option value="3">preço</option>
+                  <option value="4">quilometragem</option>
+                </select>
+
+                <label for="cresc">
+                  <input type="radio" name="marca" id="cresc" />
+                  Crescente
+                </label>
+
+                <label for="decresc">
+                  <input type="radio" name="marca" id="decresc" />
+                  Decrescente
+                </label>
+              </div>
+            </form>
+          </nav>
+
+          <div class="div_buttons">
+            <div>
+              <button class="btn_ btn_media_precos">Calcular média</button>
+
+              <button class="btn_ btn_ano_popular">Ano mais popular</button>
             </div>
-            <div class="responsive_menu">
-                <nav>
-                    <ul>
-                        <li><a href="#">Contato</a></li>
-                        <li><a href="#">Compras</a></li>
-                        <li><a href="#">Promoções</a></li>
-                        <li><a href="#">Perfil</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main>
-            <nav class="nav_pesquisar">
-                
-                <div class="div_infos">
-                    <span class="carros_selecionados">Carros selecionados: <output></output></span>
-                    
-                    <span class="valor_carros_selecionados">Valor carros selecionados: <output></output></span>
-                    
-                    <span class="mediana_anos_carros_selecionados">Mediana anos: <output></output></span>
-                    
-                    <span class="desvio_padrao_km_carros_selecionados">Desvio padrão: <output></output></span>
-                    
-                    <span class="media_precos">Media de preços: <output></output></span>
-                    
-                    <span class="ano_popular">Ano popular: <output></output></span>
-                </div>
 
-                <div class="search_marca_modelo">
-                    <label for="marca_modelo" class="search">
-                        <b>Busque o carro que deseja</b>
-                    </label>
-                    <input type="text" id="marca_modelo" placeholder="Pesquise a marca ou o modelo que busca">
-                </div>
+            <button class="btn_ btn_filtro">Filtrar</button>
+          </div>
+        </nav>
 
-                <nav class="nav_filtrar">
-                    <form id="filtrar">
-                        <div class="div_select_marca">
-                            <label for="select_marca">
-                                <b>Selecione a marca</b>
-                            </label>
-                            <select id="select_marca">
-                                <option value="-1">-- Selecione --</option>
-                            </select>
-                        </div>
+        <div id="container_produtos"></div>
 
-                        <div class="div_select_combustivel">
-                            <label for="select_combustivel">
-                                <b>Selecione o tipo de combustível</b>
-                            </label>
-                            <select id="select_combustivel">
-                                <option value="-1">-- Selecione --</option>
-                            </select>
-                        </div>
-
-                        <div class="div_select_ano_minimo">
-                            <label for="select_ano_minimo">
-                                <b>Selecione o ano mínimo</b>
-                            </label>
-                            <select id="select_ano_minimo">
-                                <option value="-1">-- Selecione --</option>
-                            </select>
-                        </div>
-
-                        <div class="div_select_ano_maximo">
-                            <label for="select_ano_maximo">
-                                <b>Selecione o ano máximo</b>
-                            </label>
-                            <select id="select_ano_maximo">
-                                <option value="-1">-- Selecione --</option>
-                            </select>
-                        </div>
-
-                        <div class="div_preco_minimo">
-                            <label for="preco_minimo">
-                                <b>Preço mínimo</b>
-                            </label>
-                            <input type="number" id="preco_minimo">
-                        </div>
-
-                        <div class="div_preco_maximo">
-                            <label for="preco_maximo">
-                                <b>Preço máximo</b>
-                            </label>
-                            <input type="number" id="preco_maximo">
-                        </div>
-
-                        <div class="div_km_minimo">
-                            <label for="km_minimo">
-                                <b>Quilometragem mínima</b>
-                            </label>
-                            <input type="number" id="km_minimo">
-                        </div>
-                        
-                        <div class="div_km_maximo">
-                            <label for="km_maximo">
-                                <b>Quilometragem máxima</b>
-                            </label>
-                            <input type="number" id="km_maximo">
-                        </div>
-
-                        <div class="checkbox_carros">
-                            <input type="checkbox" id="chk_carros">
-                            <label for="chk_carros">Carros não usados</label>
-                        </div>
-
-                        <div id="categoria">
-                            <label for="select_categoria" id="label_select_categoria">
-                                <b>Filtrar por categoria</b>
-                            </label>
-                            <select id="select_categoria">
-                                <option value="-1">-- Selecione --</option>
-                                <option value="0">marca</option>
-                                <option value="1">modelo</option>
-                                <option value="2">preço</option>
-                                <option value="3">ano</option>
-                                <option value="4">quilometragem</option>
-                            </select>
-
-                            <label for="cresc">
-                                <input type="radio" name="marca" id="cresc">
-                                Crescente
-                            </label>
-            
-                            <label for="decresc">
-                                <input type="radio" name="marca" id="decresc">
-                                Decrescente
-                            </label>
-                        </div>
-                    </form>
-                </nav>
-                
-                <div class="div_buttons">
-                    <div>
-                        <button class="btn_ btn_media_precos">Calcular média</button>
-        
-                        <button class="btn_ btn_ano_popular">Ano mais popular</button>
-                    </div>
-                    
-                    <button class="btn_ btn_filtro">Filtrar</button>
-                </div>
-            </nav>
-
-            <div id="container_produtos"></div>
-
-            <div class="banner_promocao">
-                <button><img src="/Imagens/circle-down.svg" alt="Seta para baixo" class="icone_promocao"></button>
-                <aside class="promocao">
-                    
-                </aside>
-            </div>
-            
-        </main>
+        <div class="banner_promocao">
+          <button>
+            <img
+              src="/Imagens/circle-down.svg"
+              alt="Seta para baixo"
+              class="icone_promocao"
+            />
+          </button>
+          <aside class="promocao"></aside>
+        </div>
+      </main>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
